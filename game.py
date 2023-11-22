@@ -1,3 +1,4 @@
+from time import sleep
 import pygame
 import os
 
@@ -20,8 +21,17 @@ class Game():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    position = pygame.mouse.get_pos()
+                    rightClick = pygame.mouse.get_pressed()[2]
+                    self.handleClick(position, rightClick)
             self.draw()
             pygame.display.flip()
+            if self.board.getWon():
+               sound = pygame.mixer.Sound("sounds/win.mp3")
+               sound.play()
+               sleep(3)
+               running = False
         pygame.quit()
     
     def draw(self):
@@ -45,5 +55,16 @@ class Game():
             self.images[file.split(".")[0]] = image
     
     def getImage(self, piece):
-        string = "unclicked-bomb" if piece.getHasBomb() else str(piece.getNumAround())
+        string = None
+        if (piece.getClicked()):
+            string = "bomb-at-clicked-block" if piece.getHasBomb() else str(piece.getNumAround())
+        else:
+            string = "flag" if piece.getFlagged() else "empty-block"
         return self.images[string]
+    
+    def handleClick(self, position, rightClick):
+        if self.board.getLost():
+            return
+        index = position[1] // self.pieceSize[1], position[0] // self.pieceSize[0]
+        piece = self.board.getPiece(index)
+        self.board.handleClick(piece, rightClick)
