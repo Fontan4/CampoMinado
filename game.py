@@ -37,8 +37,6 @@ class Game():
 
             if self.board.getLost():
                 pygame.display.set_caption("Você perdeu!")
-                pygame.Surface.blit(self.screen, self.images["bomb-at-clicked-block"], (0, 0))
-                pygame.Surface.set_alpha(self.screen, 128)
                 sound = pygame.mixer.Sound("sounds/lost.mp3")
                 sound.play()
                 self.draw()
