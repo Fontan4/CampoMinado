@@ -7,11 +7,12 @@ class Game():
         self.board = board
         self.screenSize = screenSize
         self.pieceSize = screenSize[0] // self.board.getSize()[1], screenSize[1] // self.board.getSize()[0]
+        self.windowName = "Campo Minado"
         self.loadImages()
 
     def run(self):
         pygame.init()
-        pygame.display.set_caption("Campo Minado")
+        pygame.display.set_caption(self.windowName)
         pygame.display.set_icon(self.images["icon"])
         self.screen = pygame.display.set_mode(self.screenSize)
         running = True
@@ -26,15 +27,25 @@ class Game():
             self.draw()
             pygame.display.flip()
             if self.board.getWon():
+               pygame.display.set_caption("Você ganhou!")
                sound = pygame.mixer.Sound("sounds/won.mp3")
                sound.play()
+               self.draw()
+               pygame.display.flip()
                sleep(8)
                running = False
+
             if self.board.getLost():
+                pygame.display.set_caption("Você perdeu!")
+                pygame.Surface.blit(self.screen, self.images["bomb-at-clicked-block"], (0, 0))
+                pygame.Surface.set_alpha(self.screen, 128)
                 sound = pygame.mixer.Sound("sounds/lost.mp3")
                 sound.play()
+                self.draw()
+                pygame.display.flip()
                 sleep(5)
                 running = False
+            
         pygame.quit()
     
     def draw(self):
