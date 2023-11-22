@@ -9,8 +9,6 @@ class Game():
         self.pieceSize = screenSize[0] // self.board.getSize()[1], screenSize[1] // self.board.getSize()[0]
         self.loadImages()
 
-        
-    
     def run(self):
         pygame.init()
         pygame.display.set_caption("Campo Minado")
@@ -28,10 +26,15 @@ class Game():
             self.draw()
             pygame.display.flip()
             if self.board.getWon():
-               sound = pygame.mixer.Sound("sounds/win.mp3")
+               sound = pygame.mixer.Sound("sounds/won.mp3")
                sound.play()
-               sleep(3)
+               sleep(8)
                running = False
+            if self.board.getLost():
+                sound = pygame.mixer.Sound("sounds/lost.mp3")
+                sound.play()
+                sleep(5)
+                running = False
         pygame.quit()
     
     def draw(self):
