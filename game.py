@@ -62,7 +62,6 @@ class Game():
             if not file.endswith(".png"):
                 continue
             image = pygame.image.load(r"img/" + file)
-            print (self.pieceSize)
             image = pygame.transform.scale(image, self.pieceSize)
             self.images[file.split(".")[0]] = image
     
