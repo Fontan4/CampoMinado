@@ -34,3 +34,7 @@ This is a game module for the classic game "Campo Minado" (Minesweeper). Follow 
    ```
 
 2. Follow the on-screen instructions to play the game.
+
+## Alternative
+
+1. Venv folder already contains dependencies installed, choose it as your python interpreter to run the game without installing dependencies manually.
