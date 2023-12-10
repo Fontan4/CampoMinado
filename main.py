@@ -1,3 +1,5 @@
+# Authors: Amanda Bastos, André Júnior, Eduardo Fontana
+
 from game import Game
 from board import Board
 
