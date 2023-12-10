@@ -41,7 +41,7 @@ class Board():
                 if same or outOfBounds:
                     continue
                 neighbors.append(self.getPiece((row, col)))
-        return neighbors            
+        return neighbors
     
     def getSize(self):
         return self.size

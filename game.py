@@ -15,6 +15,7 @@ class Game():
         pygame.display.set_caption(self.windowName)
         pygame.display.set_icon(self.images["icon"])
         self.screen = pygame.display.set_mode(self.screenSize)
+        self.screen.fill((255, 255, 255))
         running = True
         while running == True:
             for event in pygame.event.get():
