@@ -11,7 +11,7 @@ This is a game module for the classic game "Campo Minado" (Minesweeper). Follow 
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/Fontan4/CampoMinado.git
+   git clone https://github.com/e-fontana/CampoMinado.git
    ```
 
 2. Navigate to the project directory:
